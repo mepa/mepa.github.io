@@ -1,352 +1,298 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+>
 <head>
-        <meta charset="utf-8" />
-        <title>Meghann Agarwal's Blog - Python</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+    <title>Python - Meghann Agarwal's Blog</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+
+
+
+<style type="text/css">
+
+/*some stuff for output/input prompts*/
+div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.cell.selected{border-radius:4px;border:thin #ababab solid}
+div.cell.edit_mode{border-radius:4px;border:thin #008000 solid}
+div.cell{width:100%;padding:5px 5px 5px 0;margin:0;outline:none}
+div.prompt{min-width:11ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}
+@media (max-width:480px){div.prompt{text-align:left}}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}
+div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;line-height:1.21429em}
+div.prompt:empty{padding-top:0;padding-bottom:0}
+div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:horizontal;-moz-box-align:stretch;display:box;box-orient:horizontal;box-align:stretch;}
+div.inner_cell{width:90%;}
+div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;}
+div.input_prompt{color:navy;border-top:1px solid transparent;}
+div.output_wrapper{margin-top:5px;position:relative;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
+div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:4px;-webkit-box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);-moz-box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);}
+div.output_collapsed{margin:0px;padding:0px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
+div.out_prompt_overlay{height:100%;padding:0px 0.4em;position:absolute;border-radius:4px;}
+div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000000;-moz-box-shadow:inset 0 0 1px #000000;box-shadow:inset 0 0 1px #000000;background:rgba(240, 240, 240, 0.5);}
+div.output_prompt{color:darkred;}
+
+a.anchor-link:link{text-decoration:none;padding:0px 20px;visibility:hidden;}
+h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anchor-link,h5:hover .anchor-link,h6:hover .anchor-link{visibility:visible;}
+/* end stuff for output/input prompts*/
+
+
+.highlight-ipynb .hll { background-color: #ffffcc }
+.highlight-ipynb  { background: #f8f8f8; }
+.highlight-ipynb .c { color: #408080; font-style: italic } /* Comment */
+.highlight-ipynb .err { border: 1px solid #FF0000 } /* Error */
+.highlight-ipynb .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight-ipynb .o { color: #666666 } /* Operator */
+.highlight-ipynb .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight-ipynb .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight-ipynb .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight-ipynb .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight-ipynb .gd { color: #A00000 } /* Generic.Deleted */
+.highlight-ipynb .ge { font-style: italic } /* Generic.Emph */
+.highlight-ipynb .gr { color: #FF0000 } /* Generic.Error */
+.highlight-ipynb .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight-ipynb .gi { color: #00A000 } /* Generic.Inserted */
+.highlight-ipynb .go { color: #888888 } /* Generic.Output */
+.highlight-ipynb .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight-ipynb .gs { font-weight: bold } /* Generic.Strong */
+.highlight-ipynb .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight-ipynb .gt { color: #0044DD } /* Generic.Traceback */
+.highlight-ipynb .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight-ipynb .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight-ipynb .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight-ipynb .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight-ipynb .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight-ipynb .kt { color: #B00040 } /* Keyword.Type */
+.highlight-ipynb .m { color: #666666 } /* Literal.Number */
+.highlight-ipynb .s { color: #BA2121 } /* Literal.String */
+.highlight-ipynb .na { color: #7D9029 } /* Name.Attribute */
+.highlight-ipynb .nb { color: #008000 } /* Name.Builtin */
+.highlight-ipynb .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight-ipynb .no { color: #880000 } /* Name.Constant */
+.highlight-ipynb .nd { color: #AA22FF } /* Name.Decorator */
+.highlight-ipynb .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight-ipynb .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight-ipynb .nf { color: #0000FF } /* Name.Function */
+.highlight-ipynb .nl { color: #A0A000 } /* Name.Label */
+.highlight-ipynb .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight-ipynb .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight-ipynb .nv { color: #19177C } /* Name.Variable */
+.highlight-ipynb .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight-ipynb .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight-ipynb .mf { color: #666666 } /* Literal.Number.Float */
+.highlight-ipynb .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight-ipynb .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight-ipynb .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight-ipynb .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight-ipynb .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight-ipynb .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight-ipynb .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight-ipynb .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight-ipynb .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight-ipynb .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight-ipynb .sx { color: #008000 } /* Literal.String.Other */
+.highlight-ipynb .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight-ipynb .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight-ipynb .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight-ipynb .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight-ipynb .vc { color: #19177C } /* Name.Variable.Class */
+.highlight-ipynb .vg { color: #19177C } /* Name.Variable.Global */
+.highlight-ipynb .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight-ipynb .il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+div.entry-content {
+  overflow: visible;
+  padding: 8px;
+}
+.input_area {
+  padding: 0.2em;
+}
+
+a.heading-anchor {
+ white-space: normal;
+}
+
+.rendered_html
+code {
+ font-size: .8em;
+}
+
+pre.ipynb {
+  color: black;
+  background: #f7f7f7;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0px;
+  font-size: 13px;
+}
+
+/* remove the prompt div from text cells */
+div.text_cell .prompt {
+    display: none;
+}
+
+/* remove horizontal padding from text cells, */
+/* so it aligns with outer body text */
+div.text_cell_render {
+    padding: 0.5em 0em;
+}
+
+img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
+</style>
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<script type="text/javascript">
+init_mathjax = function() {
+    if (window.MathJax) {
+        // MathJax loaded
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+            },
+            displayAlign: 'left', // Change this to 'center' to center equations.
+            "HTML-CSS": {
+                styles: {'.MathJax_Display': {"margin": 0}}
+            }
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    }
+}
+init_mathjax();
+</script>
+
+
+    <meta name="author" content="Meghann Agarwal" />
+    <meta name="keywords" content="Python" />
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="Meghann Agarwal's Blog" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Meghann Agarwal's Blog"/>
+        <meta property="og:url" content=""/>
+        <meta property="og:description" content="Meghann Agarwal's Blog"/>
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
 </head>
+<body>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Meghann Agarwal's Blog </a></h1>
-                <nav><ul>
-                    <li class="active"><a href="/category/python.html">Python</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Meghann Agarwal's Blog            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/category/python.html">Python</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/ipynb-test.html">Testing Jupyter Notebook</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2016-03-02T00:00:00-06:00">
-                Published: Wed 02 March 2016
-        </abbr>
+            <article>
+                <h2><a href="/ipynb-test.html">Testing Jupyter Notebook</a></h2>
+                <div class="summary"><p>Testing a Jupyter notebook with Pelican</p>
+                    <a class="btn btn-default btn-xs" href="/ipynb-test.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <h2><a href="/testing.html">Testing</a></h2>
+                <div class="summary"><p>Testing pelican blog on my github user page</p>
+                    <a class="btn btn-default btn-xs" href="/testing.html">more ...</a>
+                </div>
+            </article>
+            <hr/>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/meghann-agarwal.html">Meghann Agarwal</a>
-        </address>
-<p>In <a href="/category/python.html">Python</a>.</p>
-<p>tags: <a href="/tag/jupyter.html">jupyter</a> <a href="/tag/pelican.html">pelican</a> <a href="/tag/github.html">github</a> </p>
-</footer><!-- /.post-info --><p>This is a test of the pelican plugin for displaying a Jupyter notebook on this blog.</p>
-<p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Plotting-a-Map-in-Bokeh-with-OpenStreetMap-Tiles">Plotting a Map in Bokeh with OpenStreetMap Tiles<a class="anchor-link" href="#Plotting-a-Map-in-Bokeh-with-OpenStreetMap-Tiles">&#182;</a></h1><p>Here is a map of the world plotted with OpenStreetMap tiles using the Python visualization tool <a href="https://www.continuum.io/bokeh">Bokeh</a> and <a href="https://github.com/bokeh/bokeh/blob/master/examples/models/tile_source.py">this example code</a> .</p>
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">output_notebook</span><span class="p">,</span> <span class="n">show</span>
-
-<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">Plot</span>
-<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">Range1d</span>
-<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">WheelZoomTool</span><span class="p">,</span> <span class="n">ResizeTool</span><span class="p">,</span> <span class="n">PanTool</span><span class="p">,</span> <span class="n">BoxZoomTool</span>
-<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">WMTSTileSource</span>
-
-<span class="n">output_notebook</span><span class="p">()</span>
-
-<span class="c1"># set to roughly full extent of web mercator projection</span>
-<span class="n">x_range</span> <span class="o">=</span> <span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=-</span><span class="mi">20000000</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">20000000</span><span class="p">)</span>
-<span class="n">y_range</span> <span class="o">=</span> <span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=-</span><span class="mi">20000000</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">20000000</span><span class="p">)</span>
-
-<span class="c1"># create tile source from templated url</span>
-<span class="n">tile_options</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">tile_options</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;http://c.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-<span class="n">tile_source</span> <span class="o">=</span> <span class="n">WMTSTileSource</span><span class="p">(</span><span class="o">**</span><span class="n">tile_options</span><span class="p">)</span>
-
-<span class="c1"># instantiate plot and add tile source</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Plot</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="n">x_range</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="n">y_range</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">plot_width</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">add_tools</span><span class="p">(</span><span class="n">ResizeTool</span><span class="p">(),</span> <span class="n">WheelZoomTool</span><span class="p">(),</span> <span class="n">PanTool</span><span class="p">(),</span> <span class="n">BoxZoomTool</span><span class="p">())</span>
-
-<span class="n">tile_renderer_options</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">p</span><span class="o">.</span><span class="n">add_tile</span><span class="p">(</span><span class="n">tile_source</span><span class="p">,</span> <span class="o">**</span><span class="n">tile_renderer_options</span><span class="p">)</span>
-
-<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://github.com/mepa"><i class="fa fa-github-square fa-lg"></i> GitHub</a></li>
+              </ul>
+            </li>
 
 
-<div class="output_area"><div class="prompt"></div>
 
-<div class="output_html rendered_html output_subarea ">
-
-
-    <script type="text/javascript">
-      
-      (function(global) {
-        function now() {
-          return new Date();
-        }
-      
-        if (typeof (window._bokeh_onload_callbacks) === "undefined") {
-          window._bokeh_onload_callbacks = [];
-        }
-      
-        function run_callbacks() {
-          window._bokeh_onload_callbacks.forEach(function(callback) { callback() });
-          delete window._bokeh_onload_callbacks
-          console.info("Bokeh: all callbacks have finished");
-        }
-      
-        function load_libs(js_urls, callback) {
-          window._bokeh_onload_callbacks.push(callback);
-          if (window._bokeh_is_loading > 0) {
-            console.log("Bokeh: BokehJS is being loaded, scheduling callback at", now());
-            return null;
-          }
-          if (js_urls == null || js_urls.length === 0) {
-            run_callbacks();
-            return null;
-          }
-          console.log("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
-          window._bokeh_is_loading = js_urls.length;
-          for (var i = 0; i < js_urls.length; i++) {
-            var url = js_urls[i];
-            var s = document.createElement('script');
-            s.src = url;
-            s.async = false;
-            s.onreadystatechange = s.onload = function() {
-              window._bokeh_is_loading--;
-              if (window._bokeh_is_loading === 0) {
-                console.log("Bokeh: all BokehJS libraries loaded");
-                run_callbacks()
-              }
-            };
-            s.onerror = function() {
-              console.warn("failed to load library " + url);
-            };
-            console.log("Bokeh: injecting script tag for BokehJS library: ", url);
-            document.getElementsByTagName("head")[0].appendChild(s);
-          }
-        };var js_urls = ['https://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.js', 'https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.11.0.min.js', 'https://cdn.pydata.org/bokeh/release/bokeh-compiler-0.11.0.min.js'];
-      
-        var inline_js = [
-          function(Bokeh) {
-            Bokeh.set_log_level("info");
-          },
-          function(Bokeh) {
-            console.log("Bokeh: injecting CSS: https://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.css");
-            Bokeh.embed.inject_css("https://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.css");
-            console.log("Bokeh: injecting CSS: https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.11.0.min.css");
-            Bokeh.embed.inject_css("https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.11.0.min.css");
-          }
-        ];
-      
-        function run_inline_js() {
-          for (var i = 0; i < inline_js.length; i++) {
-            inline_js[i](window.Bokeh);
-          }
-        }
-      
-        if (window._bokeh_is_loading === 0) {
-          console.log("Bokeh: BokehJS loaded, going straight to plotting");
-          run_inline_js();
-        } else {
-          load_libs(js_urls, function() {
-            console.log("Bokeh: BokehJS plotting callback run at", now());
-            run_inline_js();
-          });
-        }
-      }(this));
-    </script>
-    <div>
-        <a href="http://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
-        <span>BokehJS successfully loaded.</span>
+            <li class="list-group-item"><a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                </ul>
+            </li>
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
     </div>
 </div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Meghann Agarwal
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
 
-</div>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
 
-<div class="output_area"><div class="prompt"></div>
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
 
-<div class="output_html rendered_html output_subarea ">
-
-
-    <div class="plotdiv" id="63f968b4-267d-4d03-b5d1-f16b16e8cd54"></div>
-<script type="text/javascript">
-  
-  (function(global) {
-    function now() {
-      return new Date();
-    }
-  
-    if (typeof (window._bokeh_onload_callbacks) === "undefined") {
-      window._bokeh_onload_callbacks = [];
-    }
-  
-    function run_callbacks() {
-      window._bokeh_onload_callbacks.forEach(function(callback) { callback() });
-      delete window._bokeh_onload_callbacks
-      console.info("Bokeh: all callbacks have finished");
-    }
-  
-    function load_libs(js_urls, callback) {
-      window._bokeh_onload_callbacks.push(callback);
-      if (window._bokeh_is_loading > 0) {
-        console.log("Bokeh: BokehJS is being loaded, scheduling callback at", now());
-        return null;
-      }
-      if (js_urls == null || js_urls.length === 0) {
-        run_callbacks();
-        return null;
-      }
-      console.log("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
-      window._bokeh_is_loading = js_urls.length;
-      for (var i = 0; i < js_urls.length; i++) {
-        var url = js_urls[i];
-        var s = document.createElement('script');
-        s.src = url;
-        s.async = false;
-        s.onreadystatechange = s.onload = function() {
-          window._bokeh_is_loading--;
-          if (window._bokeh_is_loading === 0) {
-            console.log("Bokeh: all BokehJS libraries loaded");
-            run_callbacks()
-          }
-        };
-        s.onerror = function() {
-          console.warn("failed to load library " + url);
-        };
-        console.log("Bokeh: injecting script tag for BokehJS library: ", url);
-        document.getElementsByTagName("head")[0].appendChild(s);
-      }
-    };var element = document.getElementById("63f968b4-267d-4d03-b5d1-f16b16e8cd54");
-    if (element == null) {
-      console.log("Bokeh: ERROR: autoload.js configured with elementid '63f968b4-267d-4d03-b5d1-f16b16e8cd54' but no matching script tag was found. ")
-      return false;
-    }var js_urls = [];
-  
-    var inline_js = [
-      function(Bokeh) {
-        Bokeh.$(function() {
-            var docs_json = {"c09fce96-170b-4205-85f3-18f1721eba74": {"version": "0.11.0", "roots": {"root_ids": ["d5e7f430-39e7-4069-980c-14fdba70fec2"], "references": [{"attributes": {"line_color": {"value": "black"}, "line_alpha": {"value": 1.0}, "render_mode": "css", "bottom_units": "screen", "level": "overlay", "top_units": "screen", "fill_alpha": {"value": 0.5}, "plot": null, "left_units": "screen", "line_dash": [4, 4], "line_width": {"value": 2}, "right_units": "screen", "fill_color": {"value": "lightgrey"}}, "type": "BoxAnnotation", "id": "59c63f2d-c321-4641-9094-14f420decf27"}, {"attributes": {"callback": null, "end": 20000000, "start": -20000000}, "type": "Range1d", "id": "7e1e6f0a-3986-4e67-9fcf-beeda10b26c2"}, {"attributes": {"plot": {"type": "Plot", "id": "d5e7f430-39e7-4069-980c-14fdba70fec2"}, "overlay": {"type": "BoxAnnotation", "id": "59c63f2d-c321-4641-9094-14f420decf27"}}, "type": "BoxZoomTool", "id": "cdf52c8e-f68b-4e50-8d0d-ec6ead71f4bd"}, {"attributes": {"plot": {"type": "Plot", "id": "d5e7f430-39e7-4069-980c-14fdba70fec2"}}, "type": "PanTool", "id": "0be79d29-eb78-43dd-8767-2f18cb24664d"}, {"attributes": {"url": "http://c.tile.openstreetmap.org/{z}/{x}/{y}.png"}, "type": "WMTSTileSource", "id": "933922fc-3a20-4847-a1d1-8c7c271e5de4"}, {"attributes": {}, "type": "ToolEvents", "id": "bc2ba43e-2c8a-4461-886e-a1af8c9ff044"}, {"attributes": {"tile_source": {"type": "WMTSTileSource", "id": "933922fc-3a20-4847-a1d1-8c7c271e5de4"}}, "type": "TileRenderer", "id": "de5643a3-9055-4c8e-8179-6690b4a6186c"}, {"attributes": {"callback": null, "end": 20000000, "start": -20000000}, "type": "Range1d", "id": "712e89a8-26a7-441a-a3cd-848a8a4a70ef"}, {"attributes": {"plot": {"type": "Plot", "id": "d5e7f430-39e7-4069-980c-14fdba70fec2"}}, "type": "WheelZoomTool", "id": "9effdf08-208e-47b3-8c86-1c73af82b419"}, {"attributes": {"plot": {"type": "Plot", "id": "d5e7f430-39e7-4069-980c-14fdba70fec2"}}, "type": "ResizeTool", "id": "dcf81383-19b9-4824-8d5f-6e5ad51eb2b2"}, {"attributes": {"x_range": {"type": "Range1d", "id": "712e89a8-26a7-441a-a3cd-848a8a4a70ef"}, "y_range": {"type": "Range1d", "id": "7e1e6f0a-3986-4e67-9fcf-beeda10b26c2"}, "renderers": [{"type": "BoxAnnotation", "id": "59c63f2d-c321-4641-9094-14f420decf27"}, {"type": "TileRenderer", "id": "de5643a3-9055-4c8e-8179-6690b4a6186c"}], "plot_width": 800, "plot_height": 800, "tool_events": {"type": "ToolEvents", "id": "bc2ba43e-2c8a-4461-886e-a1af8c9ff044"}, "tools": [{"type": "ResizeTool", "id": "dcf81383-19b9-4824-8d5f-6e5ad51eb2b2"}, {"type": "WheelZoomTool", "id": "9effdf08-208e-47b3-8c86-1c73af82b419"}, {"type": "PanTool", "id": "0be79d29-eb78-43dd-8767-2f18cb24664d"}, {"type": "BoxZoomTool", "id": "cdf52c8e-f68b-4e50-8d0d-ec6ead71f4bd"}]}, "type": "Plot", "id": "d5e7f430-39e7-4069-980c-14fdba70fec2"}]}, "title": "Bokeh Application"}};
-            var render_items = [{"notebook_comms_target": "6586158d-f958-4a2a-b828-5388bba2a8a7", "docid": "c09fce96-170b-4205-85f3-18f1721eba74", "elementid": "63f968b4-267d-4d03-b5d1-f16b16e8cd54", "modelid": "d5e7f430-39e7-4069-980c-14fdba70fec2"}];
-            
-            Bokeh.embed.embed_items(docs_json, render_items);
-        });
-      },
-      function(Bokeh) {
-      }
-    ];
-  
-    function run_inline_js() {
-      for (var i = 0; i < inline_js.length; i++) {
-        inline_js[i](window.Bokeh);
-      }
-    }
-  
-    if (window._bokeh_is_loading === 0) {
-      console.log("Bokeh: BokehJS loaded, going straight to plotting");
-      run_inline_js();
-    } else {
-      load_libs(js_urls, function() {
-        console.log("Bokeh: BokehJS plotting callback run at", now());
-        run_inline_js();
-      });
-    }
-  }(this));
-</script>
-</div>
-
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;bokeh.io._CommsHandle at 0x10be0a1d0&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div></p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/testing.html" rel="bookmark"
-                           title="Permalink to Testing">Testing</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2016-03-01T02:21:00-06:00">
-                Published: Tue 01 March 2016
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/meghann-agarwal.html">Meghann Agarwal</a>
-        </address>
-<p>In <a href="/category/python.html">Python</a>.</p>
-<p>tags: <a href="/tag/pelican.html">pelican</a> <a href="/tag/github.html">github</a> </p>
-</footer><!-- /.post-info -->                <p>Testing pelican blog on my github user page</p>
-                <a class="readmore" href="/testing.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-
-                            <li><a href="https://github.com/mepa">GitHub</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
 
 </body>
 </html>
